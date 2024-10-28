@@ -2,39 +2,35 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [photos, setPhotos] = useState([]);
+const[data,setData] = useState([]);
+const[loading,setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("https://api.pexels.com/v1/curated?page=2&per_page=10", {
-      headers: {
-        Authorization:
-          "N2Wa10zVQIclQiHpwbqdrNc5NypUMX9z9YYiv9alEcr8yuUKmhRwylJx", // Authorization header with the API key
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setPhotos(data.photos); // 'photos' key from the API response contains the array of photos
-        console.log("data", data);
-      })
-      .catch((error) => console.error("Error fetching the photos:", error));
-  }, []);
+const fetchData = async() => {
+try {
+  const response = await fetch("https://jsonplaceholder.org/posts")  
+  const result = await response.json();
+   setData(result)
+   setLoading(false)
+   console.log(result)
+}catch(error) {setLoading(false) } }
 
-  return (
-    <div>
-      {photos.length > 0 ? (
-        photos.map((photo) => (
-          <div className="photo_container" key={photo.id}>
-            <img
-              className="photo"
-              src={photo.src.medium}
-              // alt={photo.photographer}
-            ></img>
-          </div>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+useEffect(()=>{
+ fetchData();
+},[])
+ 
+if(loading) return <p>Loading...</p>
+ return(
+  <div>
+    <h1>
+    Fetched data
+    </h1>
+    <ul>
+      {data.map((user)=>{
+        return <li key={user.id}>{user.slug}<p>{user.url}</p></li>
+      })}
+    </ul>
+  </div>
+ )
+
 }
 export default App;
