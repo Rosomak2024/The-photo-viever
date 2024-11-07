@@ -11,7 +11,7 @@ function App() {
       const response = await fetch(`https://swapi.dev/api/people?page=${page}`);
       const result = await response.json();
       setData(result.results);
-      console.log(result.results.slice(0, 5));
+      console.log(result.results);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
