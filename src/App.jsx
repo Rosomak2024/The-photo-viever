@@ -24,11 +24,12 @@ function App() {
       );
 
       const json = await response.json();
-      setResponse(json); // Save the response from POST request
-      setLoading(false); // Set loading to false after the fetch is done
+      console.log("json", json);
+      setResponse(json);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setLoading(false); // Set loading to false even if there's an error
+      setLoading(false);
     }
   };
 
@@ -46,7 +47,7 @@ function App() {
   };
 
   const handleSubmit = () => {
-    fetchData(); // Submit the form data via fetch
+    fetchData();
   };
 
   return (
