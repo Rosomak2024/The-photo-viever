@@ -7,10 +7,10 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://dog.ceo/api/breeds/image/random/1");
+      const response = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
       const result = await response.json();
-      setData(result.message);
-      console.log(result.message);
+      setData(result.results);
+      console.log(result.results);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -23,23 +23,28 @@ function App() {
     fetchData();
   }, []);
 
-  const handleClick = () => {
-    fetchData();
-  };
+  // const handleClick = () => {
+  //   fetchData();
+  // };
 
   return (
     <div>
-      <h1>Dog Api</h1>
+      <h1>Pokemnon Api</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          <h2>Dog image:</h2>
-          <img src={data} alt="Random dog"></img>
-        </div>
+        <ul>
+          {data.map((id, item) => (
+            <li key={id}>{item}</li>
+          ))}
+        </ul>
       )}
-      <button onClick={handleClick}>Random</button>
+      {/* <button onClick={handleClick}>Random</button> */}
     </div>
   );
 }
 export default App;
+
+// {
+//   /* <img src={data} alt="Pokemnon"></img> */
+// }
