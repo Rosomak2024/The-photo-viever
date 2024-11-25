@@ -33,11 +33,6 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   // console.log();
-  //   fetchData();
-  // }, []);
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setForm((prevForm) => ({
