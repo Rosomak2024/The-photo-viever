@@ -8,12 +8,12 @@ function App() {
     fetch("https://api.pexels.com/v1/curated?page=2&per_page=10", {
       headers: {
         Authorization:
-          "N2Wa10zVQIclQiHpwbqdrNc5NypUMX9z9YYiv9alEcr8yuUKmhRwylJx", // Authorization header with the API key
+          "N2Wa10zVQIclQiHpwbqdrNc5NypUMX9z9YYiv9alEcr8yuUKmhRwylJx",
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        setPhotos(data.photos); // 'photos' key from the API response contains the array of photos
+        setPhotos(data.photos);
         console.log("data", data);
       })
       .catch((error) => console.error("Error fetching the photos:", error));
